@@ -18,8 +18,22 @@ export const TextFieldControlledExample: React.FunctionComponent<{
     setFormerZipCode: React.Dispatch<React.SetStateAction<string>>,
     latterZipCode: string,
     setLatterZipCode: React.Dispatch<React.SetStateAction<string>>,
+    setPrefecture: React.Dispatch<React.SetStateAction<string>>,
+    setCity: React.Dispatch<React.SetStateAction<string>>,
+    setBlock: React.Dispatch<React.SetStateAction<string>>,
+    setBuilding: React.Dispatch<React.SetStateAction<string>>,
   }> = ({
-    setName, setFurigana, setMail, setMailCheck, setPhoneNumber, setFormerZipCode, setLatterZipCode, formerZipCode, latterZipCode
+    setName, 
+    setFurigana, 
+    setMail, 
+    setMailCheck, 
+    setPhoneNumber, 
+    formerZipCode, setFormerZipCode, 
+    latterZipCode, setLatterZipCode, 
+    setPrefecture, 
+    setCity, 
+    setBlock, 
+    setBuilding
   }) => {
     // const [formerZipCodeHere, setFormerZipCodeHere] = React.useState<string>('');
     // const [latterZipCodeHere, setLatterZipCodeHere] = React.useState<string>('');
@@ -77,6 +91,34 @@ export const TextFieldControlledExample: React.FunctionComponent<{
       [setLatterZipCode]
     );
 
+    const onChangePrefecture = React.useCallback(
+      (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+        setPrefecture(newValue || '');
+      }, 
+      [setPrefecture]
+    );
+
+    const onChangeCity = React.useCallback(
+      (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+        setCity(newValue || '');
+      }, 
+      [setCity]
+    );
+
+    const onChangeBlock = React.useCallback(
+      (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+        setBlock(newValue || '');
+      }, 
+      [setBlock]
+    );
+
+    const onChangeBuilding = React.useCallback(
+      (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+        setBuilding(newValue || '');
+      }, 
+      [setBuilding]
+    );
+
     type Address = {
       address1: string,
       address2: string,
@@ -88,19 +130,23 @@ export const TextFieldControlledExample: React.FunctionComponent<{
       zipcode: string
     }
 
-    const onClickSearchAddress = async (event: React.MouseEvent<HTMLButtonElement>): Promise<Address[]> => {
+    const onClickSearchAddress = async (event: React.MouseEvent<HTMLButtonElement>) => {
       try {
         window.alert('search for address');
         const zipcode = formerZipCode + latterZipCode;
         const searchAddressURL = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + zipcode;
         const response = await axios.get(searchAddressURL);
-        const arrayAddress = response.data['results'];
-        console.log(arrayAddress);
-        return arrayAddress
+        // あくまでReactの学習に焦点を当てているため、一つの郵便番号に複数の住所が対応する場合は便宜上先頭の住所のみを利用する
+        const address: Address = response.data['results'][0];
+        setAddress(address['address1'], address['address2']+address['address3']);
       } catch(error) {
         console.log(error);
-        return []
       }
+    };
+
+    const setAddress = (prefecture: string, city: string) => {
+      console.log(prefecture);
+      console.log(city);
     };
 
     return (
@@ -155,13 +201,29 @@ export const TextFieldControlledExample: React.FunctionComponent<{
         </Stack>
 
         <Stack tokens={stackTokens}>
-          {/* // TODO: 市区町村、番地などに細分化する
-        // TODO: 郵便番号に応じて住所を自動入力するボタンを設ける */}
-        {/* <TextField
-          label="住所"
-          onChange={onChangeSecondTextFieldValue}
+        <TextField
+          label="都道府県"
+          onChange={onChangePrefecture}
           styles={narrowTextFieldStyles}
-        /> */}
+        />
+
+        <TextField
+          label="市区町村"
+          onChange={onChangeCity}
+          styles={narrowTextFieldStyles}
+        />
+
+        <TextField
+          label="番地帯"
+          onChange={onChangeBlock}
+          styles={narrowTextFieldStyles}
+        />
+
+        <TextField
+          label="アパート/マンション名等"
+          onChange={onChangeBuilding}
+          styles={narrowTextFieldStyles}
+        />
 
         {/* // TODO: ドロップダウンで年/月/日を選択する */}
         {/* <TextField

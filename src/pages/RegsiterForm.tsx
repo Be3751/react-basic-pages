@@ -11,6 +11,10 @@ const RegisterForm: React.FunctionComponent = () => {
     const [phoneNumber, setPhoneNumber] = React.useState<string>('');
     const [formerZipCode, setFormerZipCode] = React.useState<string>('');
     const [latterZipCode, setLatterZipCode] = React.useState<string>('');
+    const [prefecture, setPrefecture] = React.useState('');
+    const [city, setCity] = React.useState('');
+    const [block, setBlock] = React.useState('');
+    const [building, setBuilding] = React.useState('');
 
     const sendInfo = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -49,6 +53,10 @@ const RegisterForm: React.FunctionComponent = () => {
                 setFormerZipCode={setFormerZipCode}
                 latterZipCode={latterZipCode}
                 setLatterZipCode={setLatterZipCode}
+                setPrefecture={setPrefecture}
+                setCity={setCity}
+                setBlock={setBlock}
+                setBuilding={setBuilding}
             />
             <PrimaryButton onClick={sendInfo}/>
         </>
