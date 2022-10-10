@@ -18,9 +18,13 @@ export const TextFieldControlledExample: React.FunctionComponent<{
     setFormerZipCode: React.Dispatch<React.SetStateAction<string>>,
     latterZipCode: string,
     setLatterZipCode: React.Dispatch<React.SetStateAction<string>>,
+    prefecture: string,
     setPrefecture: React.Dispatch<React.SetStateAction<string>>,
+    city: string
     setCity: React.Dispatch<React.SetStateAction<string>>,
+    block: string,
     setBlock: React.Dispatch<React.SetStateAction<string>>,
+    building: string
     setBuilding: React.Dispatch<React.SetStateAction<string>>,
   }> = ({
     setName, 
@@ -30,10 +34,10 @@ export const TextFieldControlledExample: React.FunctionComponent<{
     setPhoneNumber, 
     formerZipCode, setFormerZipCode, 
     latterZipCode, setLatterZipCode, 
-    setPrefecture, 
-    setCity, 
-    setBlock, 
-    setBuilding
+    prefecture, setPrefecture, 
+    city, setCity, 
+    block, setBlock, 
+    building, setBuilding
   }) => {
     // const [formerZipCodeHere, setFormerZipCodeHere] = React.useState<string>('');
     // const [latterZipCodeHere, setLatterZipCodeHere] = React.useState<string>('');
@@ -132,21 +136,21 @@ export const TextFieldControlledExample: React.FunctionComponent<{
 
     const onClickSearchAddress = async (event: React.MouseEvent<HTMLButtonElement>) => {
       try {
-        window.alert('search for address');
         const zipcode = formerZipCode + latterZipCode;
         const searchAddressURL = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + zipcode;
         const response = await axios.get(searchAddressURL);
         // あくまでReactの学習に焦点を当てているため、一つの郵便番号に複数の住所が対応する場合は便宜上先頭の住所のみを利用する
         const address: Address = response.data['results'][0];
-        setAddress(address['address1'], address['address2']+address['address3']);
+        setAddress(address['address1'], address['address2'], address['address3']);
       } catch(error) {
         console.log(error);
       }
     };
 
-    const setAddress = (prefecture: string, city: string) => {
-      console.log(prefecture);
-      console.log(city);
+    const setAddress = (prefecture: string, city: string, block: string) => {
+      setPrefecture(prefecture);
+      setCity(city);
+      setBlock(block);
     };
 
     return (
@@ -203,18 +207,21 @@ export const TextFieldControlledExample: React.FunctionComponent<{
         <Stack tokens={stackTokens}>
         <TextField
           label="都道府県"
+          value={prefecture}
           onChange={onChangePrefecture}
           styles={narrowTextFieldStyles}
         />
 
         <TextField
           label="市区町村"
+          value={city}
           onChange={onChangeCity}
           styles={narrowTextFieldStyles}
         />
 
         <TextField
           label="番地帯"
+          value={block}
           onChange={onChangeBlock}
           styles={narrowTextFieldStyles}
         />

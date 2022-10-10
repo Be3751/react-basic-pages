@@ -53,9 +53,13 @@ const RegisterForm: React.FunctionComponent = () => {
                 setFormerZipCode={setFormerZipCode}
                 latterZipCode={latterZipCode}
                 setLatterZipCode={setLatterZipCode}
+                prefecture={prefecture}
                 setPrefecture={setPrefecture}
+                city={city}
                 setCity={setCity}
+                block={block}
                 setBlock={setBlock}
+                building={building}
                 setBuilding={setBuilding}
             />
             <PrimaryButton onClick={sendInfo}/>
