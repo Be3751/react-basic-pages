@@ -8,119 +8,109 @@ const textFieldStyles: Partial<ITextFieldStyles> = { fieldGroup: { width: 300 } 
 const narrowTextFieldStyles: Partial<ITextFieldStyles> = { fieldGroup: { width: 100 } };
 const stackTokens = { childrenGap: 15 };
 
-export const TextFieldControlledExample: React.FunctionComponent<{ 
-    setName: React.Dispatch<React.SetStateAction<string>>, 
-    setFurigana: React.Dispatch<React.SetStateAction<string>>,
-    setMail: React.Dispatch<React.SetStateAction<string>>,
-    setMailCheck: React.Dispatch<React.SetStateAction<string>>,
-    setPhoneNumber: React.Dispatch<React.SetStateAction<string>>,
-    formerZipCode: string,
-    setFormerZipCode: React.Dispatch<React.SetStateAction<string>>,
-    latterZipCode: string,
-    setLatterZipCode: React.Dispatch<React.SetStateAction<string>>,
-    prefecture: string,
-    setPrefecture: React.Dispatch<React.SetStateAction<string>>,
-    city: string
-    setCity: React.Dispatch<React.SetStateAction<string>>,
-    block: string,
-    setBlock: React.Dispatch<React.SetStateAction<string>>,
-    building: string
-    setBuilding: React.Dispatch<React.SetStateAction<string>>,
-  }> = ({
-    setName, 
-    setFurigana, 
-    setMail, 
-    setMailCheck, 
-    setPhoneNumber, 
-    formerZipCode, setFormerZipCode, 
-    latterZipCode, setLatterZipCode, 
-    prefecture, setPrefecture, 
-    city, setCity, 
-    block, setBlock, 
-    building, setBuilding
-  }) => {
+type RegisterFormProps = {
+  setName: React.Dispatch<React.SetStateAction<string>>, 
+  setFurigana: React.Dispatch<React.SetStateAction<string>>,
+  setMail: React.Dispatch<React.SetStateAction<string>>,
+  setMailCheck: React.Dispatch<React.SetStateAction<string>>,
+  setPhoneNumber: React.Dispatch<React.SetStateAction<string>>,
+  formerZipCode: string,
+  setFormerZipCode: React.Dispatch<React.SetStateAction<string>>,
+  latterZipCode: string,
+  setLatterZipCode: React.Dispatch<React.SetStateAction<string>>,
+  prefecture: string,
+  setPrefecture: React.Dispatch<React.SetStateAction<string>>,
+  city: string
+  setCity: React.Dispatch<React.SetStateAction<string>>,
+  block: string,
+  setBlock: React.Dispatch<React.SetStateAction<string>>,
+  building: string
+  setBuilding: React.Dispatch<React.SetStateAction<string>>
+}
+
+export const TextFieldControlledExample: React.FunctionComponent<RegisterFormProps> = (props): JSX.Element => {
     // const [formerZipCodeHere, setFormerZipCodeHere] = React.useState<string>('');
     // const [latterZipCodeHere, setLatterZipCodeHere] = React.useState<string>('');
   
     const onChangeName = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setName(newValue || '');
+        props.setName(newValue || '');
       },
-      [setName]
+      [props]
     );
 
     const onChangeFurigana = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setFurigana(newValue || '');
+        props.setFurigana(newValue || '');
       },
-      [setFurigana]
+      [props]
     );
 
     const onChangeMail = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setMail(newValue || '');
+        props.setMail(newValue || '');
       },
-      [setMail]
+      [props]
     );
 
     const onChangeMailCheck = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setMailCheck(newValue || '');
+        props.setMailCheck(newValue || '');
       },
-      [setMailCheck]
+      [props]
     );
 
     const onChangePhoneNumber = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setPhoneNumber(newValue || '');
+        props.setPhoneNumber(newValue || '');
       }, 
-      [setPhoneNumber]
+      [props]
     );
 
     const onChangeFormerZipCode = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         if(!newValue || newValue.length <= 3) {
-          setFormerZipCode(newValue || '');
+          props.setFormerZipCode(newValue || '');
         }
       },
-      [setFormerZipCode]
+      [props]
     );
 
     const onChangeLatterZipCode = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         if(!newValue || newValue.length <= 4) {
-          setLatterZipCode(newValue || '');
+          props.setLatterZipCode(newValue || '');
         }
       },
-      [setLatterZipCode]
+      [props]
     );
 
     const onChangePrefecture = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setPrefecture(newValue || '');
+        props.setPrefecture(newValue || '');
       }, 
-      [setPrefecture]
+      [props]
     );
 
     const onChangeCity = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setCity(newValue || '');
+        props.setCity(newValue || '');
       }, 
-      [setCity]
+      [props]
     );
 
     const onChangeBlock = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setBlock(newValue || '');
+        props.setBlock(newValue || '');
       }, 
-      [setBlock]
+      [props]
     );
 
     const onChangeBuilding = React.useCallback(
       (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        setBuilding(newValue || '');
+        props.setBuilding(newValue || '');
       }, 
-      [setBuilding]
+      [props]
     );
 
     type Address = {
@@ -136,7 +126,7 @@ export const TextFieldControlledExample: React.FunctionComponent<{
 
     const onClickSearchAddress = async (event: React.MouseEvent<HTMLButtonElement>) => {
       try {
-        const zipcode = formerZipCode + latterZipCode;
+        const zipcode = props.formerZipCode + props.latterZipCode;
         const searchAddressURL = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + zipcode;
         const response = await axios.get(searchAddressURL);
         // あくまでReactの学習に焦点を当てているため、一つの郵便番号に複数の住所が対応する場合は便宜上先頭の住所のみを利用する
@@ -148,9 +138,9 @@ export const TextFieldControlledExample: React.FunctionComponent<{
     };
 
     const setAddress = (prefecture: string, city: string, block: string) => {
-      setPrefecture(prefecture);
-      setCity(city);
-      setBlock(block);
+      props.setPrefecture(prefecture);
+      props.setCity(city);
+      props.setBlock(block);
     };
 
     return (
@@ -189,14 +179,14 @@ export const TextFieldControlledExample: React.FunctionComponent<{
         <Stack tokens={stackTokens} horizontal>
           <TextField
             label="郵便番号"
-            value={formerZipCode}
+            value={props.formerZipCode}
             onChange={onChangeFormerZipCode}
             styles={narrowTextFieldStyles}
           />
 
           <TextField
             label="　　　　"
-            value={latterZipCode}
+            value={props.latterZipCode}
             onChange={onChangeLatterZipCode}
             styles={narrowTextFieldStyles}
           />
@@ -207,21 +197,21 @@ export const TextFieldControlledExample: React.FunctionComponent<{
         <Stack tokens={stackTokens}>
         <TextField
           label="都道府県"
-          value={prefecture}
+          value={props.prefecture}
           onChange={onChangePrefecture}
           styles={narrowTextFieldStyles}
         />
 
         <TextField
           label="市区町村"
-          value={city}
+          value={props.city}
           onChange={onChangeCity}
           styles={narrowTextFieldStyles}
         />
 
         <TextField
           label="番地帯"
-          value={block}
+          value={props.block}
           onChange={onChangeBlock}
           styles={narrowTextFieldStyles}
         />
