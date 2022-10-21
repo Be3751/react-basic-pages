@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TextField, ITextFieldStyles } from '@fluentui/react/lib/TextField';
 import { Stack } from '@fluentui/react/lib/Stack';
-import { DefaultButton, IButtonStyles } from '@fluentui/react';
+import { DefaultButton } from '@fluentui/react/lib/Button';
 import axios from 'axios';
 
 const textFieldStyles: Partial<ITextFieldStyles> = { fieldGroup: { width: 300 } };
@@ -9,10 +9,15 @@ const narrowTextFieldStyles: Partial<ITextFieldStyles> = { fieldGroup: { width: 
 const stackTokens = { childrenGap: 15 };
 
 type RegisterFormProps = {
+  name: string,
   setName: React.Dispatch<React.SetStateAction<string>>, 
+  furigana: string,
   setFurigana: React.Dispatch<React.SetStateAction<string>>,
+  mail: string,
   setMail: React.Dispatch<React.SetStateAction<string>>,
+  mailCheck: string,
   setMailCheck: React.Dispatch<React.SetStateAction<string>>,
+  phoneNumber: string,
   setPhoneNumber: React.Dispatch<React.SetStateAction<string>>,
   formerZipCode: string,
   setFormerZipCode: React.Dispatch<React.SetStateAction<string>>,
@@ -144,34 +149,39 @@ export const TextFieldControlledExample: React.FunctionComponent<RegisterFormPro
     };
 
     return (
-      <>
+      <div>
         <Stack tokens={stackTokens}>
           <TextField
             label="氏名"
+            value={props.name}
             onChange={onChangeName}
             styles={textFieldStyles}
           />
 
           <TextField
             label="ふりがな"
+            value={props.furigana}
             onChange={onChangeFurigana}
             styles={textFieldStyles}
           />
 
           <TextField
             label="メールアドレス"
+            value={props.mail}
             onChange={onChangeMail}
             styles={textFieldStyles}
           />
 
           <TextField
             label="メールアドレス（確認）"
+            value={props.mailCheck}
             onChange={onChangeMailCheck}
             styles={textFieldStyles}
           />
 
           <TextField
             label="電話番号"
+            value={props.phoneNumber}
             onChange={onChangePhoneNumber}
             styles={textFieldStyles}
           />
@@ -191,7 +201,11 @@ export const TextFieldControlledExample: React.FunctionComponent<RegisterFormPro
             styles={narrowTextFieldStyles}
           />
 
-          <DefaultButton text='検索' onClick={onClickSearchAddress} />
+          <DefaultButton 
+            text="検索"
+            onClick={onClickSearchAddress}
+            style={{position: "relative", top: 31.5}}
+          />
         </Stack>
 
         <Stack tokens={stackTokens}>
@@ -206,20 +220,21 @@ export const TextFieldControlledExample: React.FunctionComponent<RegisterFormPro
           label="市区町村"
           value={props.city}
           onChange={onChangeCity}
-          styles={narrowTextFieldStyles}
+          styles={textFieldStyles}
         />
 
         <TextField
           label="番地帯"
           value={props.block}
           onChange={onChangeBlock}
-          styles={narrowTextFieldStyles}
+          styles={textFieldStyles}
         />
 
         <TextField
           label="アパート/マンション名等"
+          value={props.building}
           onChange={onChangeBuilding}
-          styles={narrowTextFieldStyles}
+          styles={textFieldStyles}
         />
 
         {/* // TODO: ドロップダウンで年/月/日を選択する */}
@@ -229,6 +244,6 @@ export const TextFieldControlledExample: React.FunctionComponent<RegisterFormPro
           styles={narrowTextFieldStyles}
         /> */}
         </Stack>
-      </>
+      </div>
     );
 };

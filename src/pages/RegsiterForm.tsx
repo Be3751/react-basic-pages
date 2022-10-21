@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PrimaryButton } from '@fluentui/react';
+import { PrimaryButton, DefaultButton } from '@fluentui/react';
 import { TextFieldControlledExample } from '../components/TextFieldControlledExample';
 
 const RegisterForm: React.FunctionComponent = () => {
@@ -24,13 +24,31 @@ const RegisterForm: React.FunctionComponent = () => {
                 'furigana': furigana,
                 'mail': mail,
                 'phone_number': phoneNumber,
-                'zipcode': formerZipCode+'-'+latterZipCode
+                'zipcode': formerZipCode+'-'+latterZipCode,
+                'prefecture': prefecture,
+                'city': city,
+                'block': block,
+                'building': building
             };
             console.log(registerInfo);
         } else {
             console.log('メールアドレス不一致！');
             window.alert('メールアドレス不一致！');
         }
+    };
+
+    const clearValue = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setName("");
+        setFurigana("");
+        setMail("");
+        setMailCheck("");
+        setPhoneNumber("");
+        setFormerZipCode("");
+        setLatterZipCode("");
+        setPrefecture("");
+        setCity("");
+        setBlock("");
+        setBuilding("");
     };
 
     const checkMailPair = (): boolean => {
@@ -41,29 +59,43 @@ const RegisterForm: React.FunctionComponent = () => {
     };
 
     return (
-        <>
+        <div style={{position: "absolute", top: 10, left: 100}}>
             <h1>登録フォーム</h1>
-            <TextFieldControlledExample 
-                setName={setName} 
-                setFurigana={setFurigana} 
-                setMail={setMail} 
-                setMailCheck={setMailCheck}
-                setPhoneNumber={setPhoneNumber}
-                formerZipCode={formerZipCode}
-                setFormerZipCode={setFormerZipCode}
-                latterZipCode={latterZipCode}
-                setLatterZipCode={setLatterZipCode}
-                prefecture={prefecture}
-                setPrefecture={setPrefecture}
-                city={city}
-                setCity={setCity}
-                block={block}
-                setBlock={setBlock}
-                building={building}
-                setBuilding={setBuilding}
-            />
-            <PrimaryButton onClick={sendInfo}/>
-        </>
+                <TextFieldControlledExample 
+                    name={name}
+                    setName={setName}
+                    furigana={furigana}
+                    setFurigana={setFurigana} 
+                    mail={mail}
+                    setMail={setMail} 
+                    mailCheck={mailCheck}
+                    setMailCheck={setMailCheck}
+                    phoneNumber={phoneNumber}
+                    setPhoneNumber={setPhoneNumber}
+                    formerZipCode={formerZipCode}
+                    setFormerZipCode={setFormerZipCode}
+                    latterZipCode={latterZipCode}
+                    setLatterZipCode={setLatterZipCode}
+                    prefecture={prefecture}
+                    setPrefecture={setPrefecture}
+                    city={city}
+                    setCity={setCity}
+                    block={block}
+                    setBlock={setBlock}
+                    building={building}
+                    setBuilding={setBuilding}
+                />
+                <DefaultButton 
+                    onClick={clearValue}
+                    text="クリア"
+                    style={{position: "relative", top: 20, left: 120}}
+                />
+                <PrimaryButton 
+                    onClick={sendInfo}
+                    text="送信"
+                    style={{position: "relative", top: 20, left: 140}}
+                />
+        </div>
     );
 }
 
