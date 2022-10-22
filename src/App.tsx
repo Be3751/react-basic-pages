@@ -1,6 +1,6 @@
 import React from 'react';
 // import './styles/App.css';
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import UserRegister from './pages/RegsiterForm';
 import LoginSSO from './pages/LoginSSO';
