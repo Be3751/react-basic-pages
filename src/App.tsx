@@ -2,7 +2,7 @@ import React from 'react';
 // import './styles/App.css';
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import Home from './pages/Home';
-import RegisterForm from './pages/RegsiterForm';
+import UserRegister from './pages/RegsiterForm';
 import LoginSSO from './pages/LoginSSO';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path='/register' element={<RegisterForm />}/>
+          <Route path='/register' element={<UserRegister />}/>
           <Route path='/login' element={<LoginSSO />} />
         </Routes>
       </BrowserRouter>

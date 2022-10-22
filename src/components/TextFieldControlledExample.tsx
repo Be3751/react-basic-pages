@@ -8,7 +8,7 @@ const textFieldStyles: Partial<ITextFieldStyles> = { fieldGroup: { width: 300 } 
 const narrowTextFieldStyles: Partial<ITextFieldStyles> = { fieldGroup: { width: 100 } };
 const stackTokens = { childrenGap: 15 };
 
-type RegisterFormProps = {
+type UserRegisterProps = {
   name: string,
   setName: React.Dispatch<React.SetStateAction<string>>, 
   furigana: string,
@@ -33,7 +33,7 @@ type RegisterFormProps = {
   setBuilding: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const TextFieldControlledExample: React.FunctionComponent<RegisterFormProps> = (props): JSX.Element => {
+export const TextFieldControlledExample: React.FunctionComponent<UserRegisterProps> = (props): JSX.Element => {
     // const [formerZipCodeHere, setFormerZipCodeHere] = React.useState<string>('');
     // const [latterZipCodeHere, setLatterZipCodeHere] = React.useState<string>('');
   

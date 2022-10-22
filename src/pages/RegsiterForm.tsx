@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PrimaryButton, DefaultButton } from '@fluentui/react';
 import { TextFieldControlledExample } from '../components/TextFieldControlledExample';
 
-const RegisterForm: React.FunctionComponent = () => {
+const UserRegister: React.FunctionComponent = () => {
     // 関数コンポーネント内で状態管理
     const [name, setName] = React.useState<string>('');
     const [furigana, setFurigana] = React.useState<string>('');
@@ -99,4 +99,4 @@ const RegisterForm: React.FunctionComponent = () => {
     );
 }
 
-export default RegisterForm
+export default UserRegister
