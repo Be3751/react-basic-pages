@@ -35,7 +35,19 @@ const OriginLogin: React.FunctionComponent = () => {
 
     const onChangeId = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
         setId(newValue || '');
-        console.log(newValue);
+    }
+
+    const onChangePwd = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+        setPwd(newValue || '');
+    }
+
+    const onClickSignin = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        const userInfo = {
+            'id': id,
+            'pwd': pwd
+        };
+        console.log(userInfo);
     }
 
     return (
@@ -46,13 +58,13 @@ const OriginLogin: React.FunctionComponent = () => {
                         <TextField value={id} onChange={onChangeId} placeholder="ユーザー名 または メールアドレス" style={{width: 300}}/>
                     </Stack.Item>
                     <Stack.Item grow={1} styles={stackItemStyles}>
-                        <TextField value={pwd} placeholder="パスワード" style={{width: 300}}/>
+                        <TextField value={pwd} onChange={onChangePwd} type='password' placeholder="パスワード" style={{width: 300}}/>
                     </Stack.Item>
                     <Stack.Item grow={1} styles={stackItemStyles}>
                         <Link href="" style={{color: "white", position: "relative", right: 70, bottom: 20}}>パスワードを忘れた場合</Link>
                     </Stack.Item>
                     <Stack.Item grow={1} styles={stackItemStyles}>
-                        <PrimaryButton text="会員ページにサインイン"/>
+                        <PrimaryButton onClick={onClickSignin} text="会員ページにサインイン"/>
                     </Stack.Item>
                 </Stack>
             </Stack>
