@@ -6,21 +6,15 @@ import SSOLogin from '../components/SSOLogin';
 // Styles definition
 const stackStyles: IStackStyles = {
   root: {
-    background: DefaultPalette.themeTertiary,
+    background: DefaultPalette.black,
   },
-};
-
-// Tokens definition
-const stackTokens: IStackTokens = {
-  childrenGap: 5,
-  padding: 10,
 };
 
 const LoginSSO: React.FunctionComponent = () => {
     return(
         <>
         <h1 style={{textAlign: "center"}}>会員ページにサインイン</h1>
-        <Stack horizontal styles={stackStyles} tokens={stackTokens}>
+        <Stack horizontal styles={stackStyles} style={{position: 'relative', bottom: 200}}>
             <SSOLogin />
             <OriginLogin />
         </Stack>

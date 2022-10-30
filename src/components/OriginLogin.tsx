@@ -7,19 +7,19 @@ import { Link } from '@fluentui/react';
 
 // Styles definition
 const stackStyles: IStackStyles = {
-root: {
-    background: DefaultPalette.themeTertiary,
-},
+    root: {
+        background: DefaultPalette.white,
+    },
 };
 const stackItemStyles: IStackItemStyles = {
-root: {
-    alignItems: 'center',
-    background: DefaultPalette.themePrimary,
-    color: DefaultPalette.white,
-    display: 'flex',
-    height: 50,
-    justifyContent: 'center',
-},
+    root: {
+        alignItems: 'center',
+        background: DefaultPalette.white,
+        color: DefaultPalette.white,
+        display: 'flex',
+        height: 50,
+        justifyContent: 'center',
+    },
 };
 
 // Tokens definition
@@ -58,13 +58,13 @@ const OriginLogin: React.FunctionComponent = () => {
                         <TextField value={id} onChange={onChangeId} placeholder="ユーザー名 または メールアドレス" style={{width: 300}}/>
                     </Stack.Item>
                     <Stack.Item grow={1} styles={stackItemStyles}>
-                        <TextField value={pwd} onChange={onChangePwd} type='password' placeholder="パスワード" style={{width: 300}}/>
+                        <TextField value={pwd} onChange={onChangePwd} type='password' canRevealPassword placeholder="パスワード" style={{width: 269}}/>
                     </Stack.Item>
                     <Stack.Item grow={1} styles={stackItemStyles}>
-                        <Link href="" style={{color: "white", position: "relative", right: 70, bottom: 20}}>パスワードを忘れた場合</Link>
+                        <Link href="" style={{color: "#0078D4", position: "relative", right: 70, bottom: 20}}>パスワードを忘れた場合</Link>
                     </Stack.Item>
                     <Stack.Item grow={1} styles={stackItemStyles}>
-                        <PrimaryButton onClick={onClickSignin} text="会員ページにサインイン"/>
+                        <PrimaryButton onClick={onClickSignin} text="会員ページにサインイン" style={{backgroundColor: "#0078D4", borderColor: "white", width: 300, height: 50, borderRadius: 10}}/>
                     </Stack.Item>
                 </Stack>
             </Stack>
