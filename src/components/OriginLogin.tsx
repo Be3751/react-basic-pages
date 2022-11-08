@@ -52,7 +52,7 @@ const OriginLogin: React.FunctionComponent = () => {
 
     return (
         <Stack.Item grow={1} styles={stackItemStyles}>
-            <Stack tokens={outerStackTokens} style={{position:"absolute", top: 200, right: 550, width: 400}}>
+            <Stack tokens={outerStackTokens} style={{position:"relative", top: "50vh", right: "10vw", width: 400}}>
                 <Stack styles={stackStyles} tokens={innerStackTokens}>
                     <Stack.Item grow={1} styles={stackItemStyles}>
                         <TextField value={id} onChange={onChangeId} placeholder="ユーザー名 または メールアドレス" style={{width: 300}}/>

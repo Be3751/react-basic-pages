@@ -39,7 +39,7 @@ const SSOLogin: React.FunctionComponent = () => {
     return (
         <Stack.Item grow={1} styles={stackItemStyles}>
             <Stack tokens={outerStackTokens} >
-                <Stack styles={stackStyles} tokens={innerStackTokens} style={{position:"absolute", top: 200, left: 550, width: 400}}>
+                <Stack styles={stackStyles} tokens={innerStackTokens} style={{position:"relative", top: "50vh", left: "10vw", width: 400}}>
                     <Stack.Item grow={1} styles={stackItemStyles}>
                         <PrimaryButton text="Google アカウントでサインイン" styles={buttonStyles}/>
                     </Stack.Item>
